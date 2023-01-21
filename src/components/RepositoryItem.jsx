@@ -1,15 +1,21 @@
-import { View, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
+import Header from './Header';
+import Body from "./Body.jsx";
+// import TextCustom from './Text.jsx';
 
-const RepositoryItem = ({item}) => {
-    return(
-        <View>
-            <Text>Full name: {item.fullName}</Text>
-            <Text>Description: {item.description}</Text>
-            <Text>Lenguaje: {item.language}</Text>
-            <Text>Start: {item.stargazersCount}</Text>
-            <Text>Forks: {item.forksCount}</Text>
-            <Text>Review: {item.reviewCount}</Text>
-            <Text>Rating: {item.ratingAverage}</Text>
+const style = StyleSheet.create({
+    container: {
+        padding: 10,
+        marginBottom: 20,
+        backgroundColor: 'white'
+    }
+});
+
+const RepositoryItem = ({ item }) => {
+    return (
+        <View style={style.container}>
+            <Header item={item} />
+            <Body item={item} />
         </View>
     );
 };
