@@ -1,7 +1,17 @@
+import { StatusBar } from 'expo-status-bar';
 import Main from './src/components/Main.jsx';
+import { NativeRouter } from 'react-router-native';
 
 const App = () => {
-  return <Main />;
+  return (
+    <>
+      <NativeRouter>
+        <Main />
+      </NativeRouter>
+      <StatusBar style="auto" />
+    </>
+  );
+
 };
 
 export default App;
