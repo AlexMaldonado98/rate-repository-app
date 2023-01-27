@@ -1,6 +1,6 @@
 import {View, StyleSheet, Image} from 'react-native';
-import TextCustom from './Text';
-import theme from '../theme';
+import TextCustom from '../Text';
+import theme from '../../theme';
 
 const style = StyleSheet.create({
     containerHeader: {

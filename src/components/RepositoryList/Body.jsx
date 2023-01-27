@@ -1,5 +1,5 @@
 import {View, StyleSheet } from 'react-native';
-import TextCustom from './Text';
+import TextCustom from '../Text';
 
 const style = StyleSheet.create({
     containerBody: {
