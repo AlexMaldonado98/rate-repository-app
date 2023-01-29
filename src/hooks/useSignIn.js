@@ -6,7 +6,7 @@ const useSingIn = () => {
 
     const singIn = async({username,password}) => {
         const result = await Authenticate({variables:{credentials:{password,username}}});
-        return result
+        return result;
     };
 
     return [singIn,result];
