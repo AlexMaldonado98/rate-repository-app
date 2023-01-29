@@ -5,11 +5,11 @@ import { ApolloProvider } from '@apollo/client';
 import createApolloClient from './src/utils/apolloClient.js';
 import Constants from 'expo-constants';
 
-const apolloClient = createApolloClient()
+const apolloClient = createApolloClient();
 
 const App = () => {
 
-  console.log(Constants.manifest)
+  console.log(Constants.manifest);
 
   return (
     <>

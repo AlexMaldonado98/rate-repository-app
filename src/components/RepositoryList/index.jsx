@@ -59,7 +59,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
 
-  const { data: repositoryNodes } = useRepositories()
+  const { data: repositoryNodes } = useRepositories();
 
   return (
     <FlatList
