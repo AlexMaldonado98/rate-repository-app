@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import SingInForm from './SingInForm';
 import * as yup from 'yup';
 import useSingIn from '../../hooks/useSignIn';
-import AuthStorage from '../../utils/authStorage';
+import { useNavigate } from 'react-router-native';
 
 const initialValues = {
   username: '',
@@ -14,15 +14,14 @@ const validationSchema = yup.object().shape({
   password: yup.string().min(5,'a minimum of 5 characters is required').required('Password is required')
 });
 
-const authStorage = new AuthStorage();
-
 const SignIn = () => {
+  const navigate = useNavigate();
   const [singIn] = useSingIn();
   const onSubmit = async(values) => {
     const {username,password} = values;
     try {
-      const {data} = await singIn({username,password});
-      authStorage.setAccessToken(data.authenticate.accessToken);
+      await singIn({username,password});
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
