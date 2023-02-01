@@ -11,11 +11,17 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jest/recommended"
     ],
-    "parser": "@babel/eslint-parser",
     "parserOptions": {
-        "requireConfigFile": false
+        "ecmaVersion": "latest",
+        "parser": "@babel/eslint-parser",
+        "sourceType": "module",
+        "requireConfigFile": false,
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
     "env": {
         "react-native/react-native": true
@@ -23,6 +29,9 @@
     "rules": {
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
-        "semi":[2,"always"]
+        "semi": [
+            2,
+            "always"
+        ]
     }
 }
