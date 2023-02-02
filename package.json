@@ -10,7 +10,7 @@
     "eject": "expo eject",
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern",
     "web:start": "react-scripts start",
-    "test": "jest src/__tests__/RepositoryList.js"
+    "test": "jest src/__tests__/SingIn.js"
   },
   "jest": {
     "preset": "jest-expo",

@@ -70,12 +70,6 @@ describe('RepositoryList', () => {
             expect(secontRepositoryItem).toHaveTextContent("1.7K");
             expect(secontRepositoryItem).toHaveTextContent(72);
             expect(secontRepositoryItem).toHaveTextContent(3);
-
-
-
-
-
-            // Add your test code here
         });
     });
 });
