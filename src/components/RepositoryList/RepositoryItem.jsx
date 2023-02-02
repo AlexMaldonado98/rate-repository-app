@@ -13,7 +13,7 @@ const style = StyleSheet.create({
 
 const RepositoryItem = ({ item }) => {
     return (
-        <View style={style.container}>
+        <View testID="repositoryItem" style={style.container} >
             <Header item={item} />
             <Body item={item} />
         </View>

@@ -57,16 +57,23 @@ const repositories = [
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
+export const RepositoryListContainer = ({repositories}) => {
+  
+  return (
+    <FlatList
+      data={repositories}
+      renderItem={RepositoryItem}
+      ItemSeparatorComponent={ItemSeparator}
+    />
+  );
+};
+
 const RepositoryList = () => {
 
   const { data: repositoryNodes } = useRepositories();
 
   return (
-    <FlatList
-      data={repositoryNodes}
-      renderItem={RepositoryItem}
-      ItemSeparatorComponent={ItemSeparator}
-    />
+    <RepositoryListContainer repositories={repositoryNodes} />
   );
 };
 

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
     const { data } = useQuery(GET_ME, { fetchPolicy: 'cache-and-network' });
     const user = data ? data.me : undefined;
-    const {singOutUser} = useUser()
+    const {singOutUser} = useUser();
 
     const singOut = () => {
         Alert.alert('', 'Do you want to sing out?', [
@@ -38,11 +38,11 @@ const AppBar = () => {
                 text: 'Sing out',
                 style: 'default',
                 onPress: async () => {
-                    await singOutUser('/singin')
+                    await singOutUser('/singin');
                 },
             },
-        ])
-    }
+        ]);
+    };
 
     return (
         <View style={styles.container}>
