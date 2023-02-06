@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import theme from "../../theme";
 import FormikTextInput from "./FormikTextInput";
 
-const style = StyleSheet.create({
+export const style = StyleSheet.create({
     container:{
         padding: 5,
         backgroundColor: 'white',
@@ -16,9 +16,9 @@ const style = StyleSheet.create({
         margin: 5,
     },
     buttomSubmit:{
+        paddingVertical:20,
         margin: 5,
         backgroundColor: theme.colors.primary,
-        height:'20%',
         alignItems: 'center',
         justifyContent:'center',
     },

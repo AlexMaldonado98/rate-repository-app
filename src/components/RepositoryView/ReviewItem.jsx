@@ -4,7 +4,6 @@ import theme from '../../theme';
 import { format } from 'date-fns';
 
 const ReviewItem = ({ review }) => {
-    console.log(review);
     const style = StyleSheet.create({
         container: {
             flexDirection: 'row',

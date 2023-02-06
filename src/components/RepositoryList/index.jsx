@@ -60,7 +60,6 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 export const RepositoryListContainer = ({ repositories }) => {
   const navigate = useNavigate();
-
   return (
     <FlatList
       data={repositories}

@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     text: {
         paddingTop: (Constants.statusBarHeight * 1.5),
         color: 'white',
+    },
+    separatorRoute:{
+        margin:5
     }
 });
 
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
 const AppBar = () => {
     const { data } = useQuery(GET_ME, { fetchPolicy: 'cache-and-network' });
     const user = data ? data.me : undefined;
-    const {singOutUser} = useUser();
+    const { singOutUser } = useUser();
 
     const singOut = () => {
         Alert.alert('', 'Do you want to sing out?', [
@@ -47,7 +50,7 @@ const AppBar = () => {
     return (
         <View style={styles.container}>
             <ScrollView horizontal >
-                <Link to='/' style={{ marginRight: 10 }}>
+                <Link to='/' style={styles.separatorRoute}>
                     <View>
                         <TextCustom fontWeight='bold' style={styles.text}>Repositories</TextCustom>
                     </View>
@@ -55,14 +58,21 @@ const AppBar = () => {
                 {
                     user
                         ? (
-                            <Link to='/' onPress={singOut}>
-                                <View>
-                                    <TextCustom fontWeight='bold' style={styles.text}>Sing Out</TextCustom>
-                                </View>
-                            </Link>
+                            <>
+                                <Link to='/review' style={styles.separatorRoute}>
+                                    <View>
+                                        <TextCustom fontWeight='bold' style={styles.text}>Create review</TextCustom>
+                                    </View>
+                                </Link>
+                                <Link onPress={singOut} style={styles.separatorRoute}>
+                                    <View>
+                                        <TextCustom fontWeight='bold' style={styles.text}>Sing Out</TextCustom>
+                                    </View>
+                                </Link>
+                            </>
                         )
                         : (
-                            <Link to='/singin'>
+                            <Link to='/singin' style={styles.separatorRoute}>
                                 <View>
                                     <TextCustom fontWeight='bold' style={styles.text}>Sing In</TextCustom>
                                 </View>
