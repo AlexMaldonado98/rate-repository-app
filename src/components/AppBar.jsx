@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
         paddingTop: (Constants.statusBarHeight * 1.5),
         color: 'white',
     },
-    separatorRoute:{
-        margin:5
+    separatorRoute: {
+        margin: 5
     }
 });
 
@@ -72,11 +72,18 @@ const AppBar = () => {
                             </>
                         )
                         : (
-                            <Link to='/singin' style={styles.separatorRoute}>
-                                <View>
-                                    <TextCustom fontWeight='bold' style={styles.text}>Sing In</TextCustom>
-                                </View>
-                            </Link>
+                            <>
+                                <Link to='/singin' style={styles.separatorRoute}>
+                                    <View>
+                                        <TextCustom fontWeight='bold' style={styles.text}>Sing In</TextCustom>
+                                    </View>
+                                </Link>
+                                <Link to='/singup' style={styles.separatorRoute}>
+                                    <View>
+                                        <TextCustom fontWeight='bold' style={styles.text}>Sing up</TextCustom>
+                                    </View>
+                                </Link>
+                            </>
                         )
                 }
             </ScrollView>

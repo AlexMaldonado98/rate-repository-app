@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-native';
 import SignIn from './SingIn';
 import RepositoryView from './RepositoryView';
 import ReviewForm from './ReviewForm';
+import SingUp from './SingUp';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,7 @@ const Main = () => {
         <Route path="/singin" element={<SignIn />} exact />
         <Route path="/repository/:repoId" element={<RepositoryView />} exact />
         <Route path='/review'  element={<ReviewForm />} exact/>
+        <Route path='/singup'  element={<SingUp />} exact/>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>
