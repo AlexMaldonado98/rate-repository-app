@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import useRepositories from '../../hooks/useRepositories';
+import Filter from './Filter';
 import RepositoryItem from './RepositoryItem';
 
 const styles = StyleSheet.create({
@@ -58,11 +60,12 @@ const repositories = [
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ repositories, changeFilter, FilterCurrent }) => {
   const navigate = useNavigate();
   return (
     <FlatList
       data={repositories}
+      ListHeaderComponent={() => <Filter changeFilter={changeFilter} FilterCurrent={FilterCurrent} />}
       renderItem={({ item }) => <Pressable onPress={() => navigate(`/repository/${item.id}`)}><RepositoryItem item={item} /></Pressable>}
       ItemSeparatorComponent={ItemSeparator}
     />
@@ -71,10 +74,19 @@ export const RepositoryListContainer = ({ repositories }) => {
 
 const RepositoryList = () => {
 
-  const { data: repositoryNodes } = useRepositories();
+  const [orderBy, setOrderBy] = useState('CREATED_AT');
+  const [orderDirection, setOrderDirection] = useState('DESC');
+  const [FilterCurrent, setFilterCurrent] = useState("Latest Repositories");
+  const { data: repositoryNodes } = useRepositories({ orderBy, orderDirection });
+
+  const changeFilter = (orderBy,orderDirection,filter) => {
+    setOrderBy(orderBy),
+    setOrderDirection(orderDirection);
+    setFilterCurrent(filter);
+  };
 
   return (
-    <RepositoryListContainer repositories={repositoryNodes} />
+    <RepositoryListContainer repositories={repositoryNodes} changeFilter={changeFilter} FilterCurrent={FilterCurrent} />
   );
 };
 

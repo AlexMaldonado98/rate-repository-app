@@ -3,8 +3,8 @@ import { PREVIEW_REPOSITORIES_DATA } from './fragments';
 
 export const GET_REPOSITORIES = gql`
   ${PREVIEW_REPOSITORIES_DATA}
-  query{
-      repositories {
+  query Repositories($orderBy: AllRepositoriesOrderBy!, $orderDirection: OrderDirection!){
+      repositories (orderBy: $orderBy, orderDirection: $orderDirection) {
         edges {
           node {
             ...PreviewRepositoriesData
@@ -13,6 +13,7 @@ export const GET_REPOSITORIES = gql`
       }
     }
 `;
+
 
 export const GET_ME = gql`
   query{

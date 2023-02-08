@@ -14,8 +14,6 @@ export const ItemSeparator = () => <View style={styles.separator} />;
 const RepositoryView = () => {
     const { data, loading } = useRepository();
 
-    console.log("useRepository");
-
     if (loading) {
         return <View><Text>Loading ...</Text></View>;
     }
