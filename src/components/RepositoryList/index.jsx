@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import useRepositories from '../../hooks/useRepositories';
@@ -60,33 +60,60 @@ const repositories = [
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories, changeFilter, FilterCurrent }) => {
+/* export const RepositoryListContainer = ({ repositories, changeFilter, FilterCurrent, deboucedSearchKeyword, handleSearchKeyword }) => {
   const navigate = useNavigate();
   return (
     <FlatList
       data={repositories}
-      ListHeaderComponent={() => <Filter changeFilter={changeFilter} FilterCurrent={FilterCurrent} />}
+      ListHeaderComponent={() => <Filter changeFilter={changeFilter} FilterCurrent={FilterCurrent} debouncedSearchKeyword={deboucedSearchKeyword} handleSearchKeyword={handleSearchKeyword} />}
       renderItem={({ item }) => <Pressable onPress={() => navigate(`/repository/${item.id}`)}><RepositoryItem item={item} /></Pressable>}
       ItemSeparatorComponent={ItemSeparator}
     />
   );
-};
+}; */
+
+export class RepositoryListContainer extends React.Component {
+  renderHeader = () => {
+    const props = this.props;
+
+    return (
+      <Filter changeFilter={props.changeFilter} FilterCurrent={props.FilterCurrent} handleSearchKeyword={props.handleSearchKeyword} />
+    );
+  };
+
+  render() {
+    return (
+      <FlatList
+        data={this.props.repositories}
+        ListHeaderComponent={this.renderHeader()}
+        renderItem={({ item }) => <Pressable onPress={() => this.props.navigate(`/repository/${item.id}`)}><RepositoryItem item={item} /></Pressable>}
+        ItemSeparatorComponent={ItemSeparator}
+      />
+    );
+  }
+}
 
 const RepositoryList = () => {
 
   const [orderBy, setOrderBy] = useState('CREATED_AT');
   const [orderDirection, setOrderDirection] = useState('DESC');
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [FilterCurrent, setFilterCurrent] = useState("Latest Repositories");
-  const { data: repositoryNodes } = useRepositories({ orderBy, orderDirection });
+  const { data: repositoryNodes } = useRepositories({ orderBy, orderDirection, searchKeyword });
+  const navigate = useNavigate();
 
-  const changeFilter = (orderBy,orderDirection,filter) => {
-    setOrderBy(orderBy),
+  const changeFilter = (orderBy, orderDirection, filter) => {
+    setOrderBy(orderBy);
     setOrderDirection(orderDirection);
     setFilterCurrent(filter);
   };
 
+  const handleSearchKeyword = (value) => {
+    setSearchKeyword(value);
+  };
+
   return (
-    <RepositoryListContainer repositories={repositoryNodes} changeFilter={changeFilter} FilterCurrent={FilterCurrent} />
+    <RepositoryListContainer repositories={repositoryNodes} changeFilter={changeFilter} FilterCurrent={FilterCurrent} handleSearchKeyword={handleSearchKeyword} navigate={navigate} />
   );
 };
 
