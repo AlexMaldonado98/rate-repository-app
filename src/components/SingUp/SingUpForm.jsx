@@ -25,7 +25,7 @@ const SingUpForm = ({onSubmit,disabled}) => {
             <FormikTextInput name='password' placeholder="Password" style={[style.inputStyle, style.borderRadius]} secureTextEntry={true} />
             <FormikTextInput name='passwordConfirm' placeholder="Password confirmation" style={[style.inputStyle, style.borderRadius]} secureTextEntry={true} />
             <Pressable onPress={onSubmit} style={stylesArray}>
-                <Text style={style.text} >Sing in</Text>
+                <Text style={style.text} >Sing up</Text>
             </Pressable>
         </View>
     );

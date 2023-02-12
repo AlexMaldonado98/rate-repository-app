@@ -33,7 +33,7 @@ const ReviewItem = ({ review }) => {
                     </TextCustom>
                 </View>
             </View>
-            <View style={{ position: 'relative' }}>
+            <View style={{flexBasis:'80%'}}>
                 <View style={{ marginBottom: 7, justifyContent: "flex-start" }}>
                     <TextCustom fontWeight='bold' fontSize='subheading' style={style.username} >{review.user.username}</TextCustom>
                     <TextCustom fontWeight='bold' color='textSecondary' >{format(new Date(review.createdAt),'dd.MM.yyyy')}</TextCustom >

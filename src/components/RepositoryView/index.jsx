@@ -12,13 +12,18 @@ const styles = StyleSheet.create({
 export const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryView = () => {
-    const { data, loading } = useRepository();
+    const { data, loading, fetchMore } = useRepository({first:6});
 
     if (loading) {
         return <View><Text>Loading ...</Text></View>;
     }
 
+    const onEndReach = () => {
+        fetchMore();
+    };
+
     const reviews = data ? data.reviews.edges.map(repo => repo.node) : [];
+    console.log(reviews);
 
     return (
         <FlatList
@@ -27,6 +32,8 @@ const RepositoryView = () => {
             ItemSeparatorComponent={ItemSeparator}
             keyExtractor={({ id }) => id}
             ListHeaderComponent={() => <RepositoryItem itemView={true} item={data} />}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.5}
         />
     );
 };

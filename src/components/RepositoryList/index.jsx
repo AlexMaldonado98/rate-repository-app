@@ -88,6 +88,8 @@ export class RepositoryListContainer extends React.Component {
         ListHeaderComponent={this.renderHeader()}
         renderItem={({ item }) => <Pressable onPress={() => this.props.navigate(`/repository/${item.id}`)}><RepositoryItem item={item} /></Pressable>}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={this.props.onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   }
@@ -99,7 +101,7 @@ const RepositoryList = () => {
   const [orderDirection, setOrderDirection] = useState('DESC');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [FilterCurrent, setFilterCurrent] = useState("Latest Repositories");
-  const { data: repositoryNodes } = useRepositories({ orderBy, orderDirection, searchKeyword });
+  const { data: repositoryNodes, fetchMore } = useRepositories({ orderBy, orderDirection, searchKeyword, first: 6 });
   const navigate = useNavigate();
 
   const changeFilter = (orderBy, orderDirection, filter) => {
@@ -112,8 +114,12 @@ const RepositoryList = () => {
     setSearchKeyword(value);
   };
 
+  const onEndReach = () => {
+    fetchMore();
+  };
+
   return (
-    <RepositoryListContainer repositories={repositoryNodes} changeFilter={changeFilter} FilterCurrent={FilterCurrent} handleSearchKeyword={handleSearchKeyword} navigate={navigate} />
+    <RepositoryListContainer repositories={repositoryNodes} changeFilter={changeFilter} FilterCurrent={FilterCurrent} handleSearchKeyword={handleSearchKeyword} navigate={navigate} onEndReach={onEndReach} />
   );
 };
 
