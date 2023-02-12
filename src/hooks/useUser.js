@@ -7,6 +7,7 @@ const useUser = () => {
     const authStorage = useAuthStorage();
     const apolloClient = useApolloClient();
     const navigate = useNavigate();
+    
 
     const singOutUser = async (to) => {
         await authStorage.removeAccessToken();
@@ -14,9 +15,8 @@ const useUser = () => {
         navigate(to);
     };
 
-
     return {
-        singOutUser
+        singOutUser,
     };
 
 };

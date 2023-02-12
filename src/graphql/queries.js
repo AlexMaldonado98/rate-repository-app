@@ -3,7 +3,7 @@ import { PREVIEW_REPOSITORIES_DATA } from './fragments';
 
 export const GET_REPOSITORIES = gql`
   ${PREVIEW_REPOSITORIES_DATA}
-  query Repositories($orderBy: AllRepositoriesOrderBy!, $orderDirection: OrderDirection!, $searchKeyword: String!, $first: Int, $after: String){
+  query Repositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String, $first: Int, $after: String){
       repositories (orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword, first: $first, after: $after) {
         edges {
           node {
@@ -22,8 +22,29 @@ export const GET_REPOSITORIES = gql`
 
 
 export const GET_ME = gql`
-  query{
+  query getCurrentUser($includeReviews: Boolean = false, $first: Int, $after: String){
    me{
+    reviews(first: $first, after: $after) @include(if: $includeReviews) {
+      totalCount
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+      }
+      edges {
+        cursor
+        node {
+          rating
+          createdAt
+          text
+          user {
+            username
+            id
+          }
+          id
+        }
+      }
+    }
     id
     username
    } 

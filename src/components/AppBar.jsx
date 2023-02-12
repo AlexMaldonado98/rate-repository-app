@@ -64,6 +64,11 @@ const AppBar = () => {
                                         <TextCustom fontWeight='bold' style={styles.text}>Create review</TextCustom>
                                     </View>
                                 </Link>
+                                <Link to='myreviews' style={styles.separatorRoute}>
+                                    <View>
+                                        <TextCustom fontWeight='bold' style={styles.text}>My reviews</TextCustom>
+                                    </View>
+                                </Link>
                                 <Link onPress={singOut} style={styles.separatorRoute}>
                                     <View>
                                         <TextCustom fontWeight='bold' style={styles.text}>Sing Out</TextCustom>
