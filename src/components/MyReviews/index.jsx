@@ -4,7 +4,7 @@ import { ItemSeparator } from '../RepositoryView';
 import ReviewItem from '../RepositoryView/ReviewItem';
 const MyReviews = () => {
 
-    const {data,loading,fetchMore} = useCheckUser({first:8});
+    const {data,loading,fetchMore,refetch} = useCheckUser({first:8});
 
     if(loading){
         return;
@@ -17,7 +17,7 @@ const MyReviews = () => {
     return(
         <FlatList
             data={data}
-            renderItem={({item}) => <ReviewItem review={item} />}
+            renderItem={({item}) => <ReviewItem review={item} modeMyReviews={true} refetch={refetch} />}
             ItemSeparatorComponent={ItemSeparator}
             onEndReached={onEndReached}
             onEndReachedThreshold={0.1}
